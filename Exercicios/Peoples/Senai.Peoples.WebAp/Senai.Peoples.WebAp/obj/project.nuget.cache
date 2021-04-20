@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GJUtDeEcEaMpeuqZ7qO8E7uuB91OSbALuWlkhBVJEFTCVlqrac0aVXbF0tNtCX68gGfImbYFVV9fIuLvNSGYVA==",
+  "dgSpecHash": "dC38EcmPob8F9aFRy/B/PUPVsa5GymbYcNIFxBtAuBaTNi7p4DfCI6wrUkbAJ778qoCwdtav+6wbE5bgKiX8Pw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mathe\\OneDrive\\Área de Trabalho\\Peoples\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp.csproj",
+  "projectFilePath": "C:\\Users\\mathe\\OneDrive\\Área de Trabalho\\senai_sprint2_backend\\Exercicios\\Peoples\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mathe\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\mathe\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

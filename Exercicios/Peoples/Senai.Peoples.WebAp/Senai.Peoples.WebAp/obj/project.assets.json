@@ -459,11 +459,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mathe\\OneDrive\\Área de Trabalho\\Peoples\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp.csproj",
+      "projectUniqueName": "C:\\Users\\mathe\\OneDrive\\Área de Trabalho\\senai_sprint2_backend\\Exercicios\\Peoples\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp.csproj",
       "projectName": "Senai.Peoples.WebAp",
-      "projectPath": "C:\\Users\\mathe\\OneDrive\\Área de Trabalho\\Peoples\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp.csproj",
+      "projectPath": "C:\\Users\\mathe\\OneDrive\\Área de Trabalho\\senai_sprint2_backend\\Exercicios\\Peoples\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp.csproj",
       "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mathe\\OneDrive\\Área de Trabalho\\Peoples\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp\\obj\\",
+      "outputPath": "C:\\Users\\mathe\\OneDrive\\Área de Trabalho\\senai_sprint2_backend\\Exercicios\\Peoples\\Senai.Peoples.WebAp\\Senai.Peoples.WebAp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config",
