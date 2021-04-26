@@ -68,17 +68,71 @@ namespace senai.inlock.webApi_.Repositories
 
         public void Cadastrar(EstudioDomain novoEstudio)
         {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string queryInsert = "INSERT INTO Estudios(nomeEstudio) VALUES(@Nome)";
 
-        }
+                using (SqlCommand cmd = new SqlCommand(queryInsert, con))
+                {
+                    cmd.Parameters.AddWithValue("@Nome", novoEstudio.nomeEstudio);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+    }
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string queryDelete = "DELETE FROM Estudios WHERE idEstudio = @ID";
+
+                using (SqlCommand cmd = new SqlCommand (queryDelete, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public List<EstudioDomain> ListarTodos()
         {
-            throw new NotImplementedException();
+            List<EstudioDomain> listaEstudios = new List<EstudioDomain>();
+
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string querySelectAll = "SELECT idEstudio, nomeEstudio FROM Estudios";
+
+                con.Open();
+
+                SqlDataReader rdr;
+
+                using (SqlCommand cmd = new SqlCommand(querySelectAll, con))
+                {
+                    rdr = cmd.ExecuteReader();
+
+                    while (rdr.Read())
+                    {
+                        EstudioDomain estudio = new EstudioDomain()
+                        {
+                            idEstudio = Convert.ToInt32(rdr[0]),
+
+                            nomeEstudio = rdr[1].ToString()
+                        };
+
+                        listaEstudios.Add(estudio);
+
+                    }
+                }
+            }
+
+            return listaEstudios;
+
         }
     }
 }
