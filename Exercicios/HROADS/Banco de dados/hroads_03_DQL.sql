@@ -59,3 +59,7 @@ LEFT JOIN Habilidades
 ON Habilidades.IdHabilidade = ClasseHabilidades.IdHabilidade
 LEFT JOIN Classes
 ON Classes.IdClasse = ClasseHabilidades.IdClasse;
+
+SELECT * FROM Usuarios;
+
+SELECT * FROM TiposUsuarios;
