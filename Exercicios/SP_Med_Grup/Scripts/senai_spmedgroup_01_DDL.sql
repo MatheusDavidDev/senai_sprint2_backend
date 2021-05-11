@@ -66,5 +66,6 @@ CREATE TABLE consultas
 	,idMedico				INT FOREIGN KEY REFERENCES medicos(idMedico)
 	,dataConsulta			DATETIME NOT NULL
 	,situacao				VARCHAR(200) NOT NULL
+	,descricao				VARCHAR(200)
 );
 GO
