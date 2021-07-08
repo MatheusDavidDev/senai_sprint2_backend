@@ -23,7 +23,7 @@ namespace SP_Medical_Grup.WebApi.Controllers
             _pacienteRepository = new PacienteRepository();
         }
 
-        [Authorize(Roles = "1")]
+        
         [HttpGet]
         public IActionResult Get()
         {

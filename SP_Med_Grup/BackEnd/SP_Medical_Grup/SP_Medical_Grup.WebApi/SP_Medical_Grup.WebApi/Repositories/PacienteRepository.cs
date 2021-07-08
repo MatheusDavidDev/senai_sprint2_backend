@@ -1,4 +1,5 @@
-﻿using SP_Medical_Grup.WebApi.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using SP_Medical_Grup.WebApi.Contexts;
 using SP_Medical_Grup.WebApi.Domains;
 using SP_Medical_Grup.WebApi.Interfaces;
 using System;
@@ -57,7 +58,23 @@ namespace SP_Medical_Grup.WebApi.Repositories
 
         public List<Paciente> Listar()
         {
-            return ctx.Pacientes.ToList();
+            return ctx.Pacientes
+                .Include(p => p.IdUsuarioNavigation)
+                .Select(p => new Paciente
+                {
+                    IdPaciente = p.IdPaciente,
+                    DataNascimento = p.DataNascimento,
+                    Telefone = p.Telefone,
+                    Rg = p.Rg,
+                    Cpf = p.Cpf,
+                    Endereco = p.Endereco,
+
+                    IdUsuarioNavigation = new Usuario
+                    {
+                        IdUsuario = p.IdUsuarioNavigation.IdUsuario,
+                        Nome = p.IdUsuarioNavigation.Nome
+                    }
+                }).ToList();
         }
     }
 }

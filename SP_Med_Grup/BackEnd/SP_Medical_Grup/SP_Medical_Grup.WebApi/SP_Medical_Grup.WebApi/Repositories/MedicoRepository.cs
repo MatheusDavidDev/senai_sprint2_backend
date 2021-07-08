@@ -56,7 +56,35 @@ namespace SP_Medical_Grup.WebApi.Repositories
 
         public List<Medico> Listar()
         {
-            return ctx.Medicos.ToList();
+            return ctx.Medicos
+                .Include(m => m.IdEspecialidadeNavigation)
+
+                .Include(m => m.IdUsuarioNavigation)
+
+                .Select(m => new Medico
+                {
+                    IdMedico = m.IdMedico,
+                    Crm = m.Crm,
+
+                    IdUsuarioNavigation = new Usuario
+                    {
+                        IdUsuario = m.IdUsuarioNavigation.IdUsuario,
+                        Nome = m.IdUsuarioNavigation.Nome
+                    },
+
+                    IdEspecialidadeNavigation = new Especialidade
+                    {
+                        IdEspecialidade = m.IdEspecialidadeNavigation.IdEspecialidade,
+                        TituloEspecialidade = m.IdEspecialidadeNavigation.TituloEspecialidade
+                    },
+
+                    IdClinicaNavigation = new Clinica
+                    {
+                        IdClinica = m.IdClinicaNavigation.IdClinica,
+                        RazaoSocial = m.IdClinicaNavigation.RazaoSocial
+                    }
+
+                }).ToList();
         }
 
     }

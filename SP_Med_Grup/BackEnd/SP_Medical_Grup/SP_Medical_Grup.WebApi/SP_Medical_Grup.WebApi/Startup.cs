@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,10 +18,13 @@ namespace SP_Medical_Grup.WebApi
 {
     public class Startup
     {
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+
             services
                 .AddControllers()
                 .AddNewtonsoftJson(options =>
@@ -31,6 +35,17 @@ namespace SP_Medical_Grup.WebApi
 
                 });
 
+            services.AddCors(options => {
+                options.AddPolicy("CorsPolicy",
+                    builder => {
+                        builder.WithOrigins("http://localhost:3000", "http://localhost:19006")
+                                                                    .AllowAnyHeader()
+                                                                    .AllowAnyMethod();
+                    }
+                );
+            });
+
+
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sp-Medical-Group.webApi", Version = "v1"});
 
@@ -40,15 +55,15 @@ namespace SP_Medical_Grup.WebApi
             });
 
             services
-                .AddAuthentication(option =>
+                .AddAuthentication(options =>
                 {
-                    option.DefaultAuthenticateScheme = "JwtBearer";
-                    option.DefaultChallengeScheme = "JwtBearer";
+                    options.DefaultAuthenticateScheme = "JwtBearer";
+                    options.DefaultChallengeScheme = "JwtBearer";
                 })
 
-                .AddJwtBearer("JwtBearer", option =>
+                .AddJwtBearer("JwtBearer", options =>
                 {
-                    option.TokenValidationParameters = new TokenValidationParameters
+                    options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = true,
 
@@ -62,9 +77,10 @@ namespace SP_Medical_Grup.WebApi
 
                         ValidIssuer = "SpMedicalGroup.wepApi",
 
-                        ValidAudience = "SpMedicalGroup.wepApi"
+                        ValidAudience = "SpMedicalGroup.webApi"
                     };
                 });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,6 +104,8 @@ namespace SP_Medical_Grup.WebApi
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {

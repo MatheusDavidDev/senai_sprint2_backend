@@ -56,12 +56,28 @@ namespace SP_Medical_Grup.WebApi.Repositories
 
         public List<Usuario> Listar()
         {
-            return ctx.Usuarios.ToList();
+            return ctx.Usuarios
+                .Include(u => u.IdTipoUsuarioNavigation)
+
+                .Select(u => new Usuario
+                {
+                    IdUsuario = u.IdUsuario,
+                    Nome = u.Nome,
+                    Email = u.Email,
+                    Senha = u.Senha,
+
+                    IdTipoUsuarioNavigation = new TiposUsuario
+                    {
+                        IdTipoUsuario = u.IdTipoUsuarioNavigation.IdTipoUsuario,
+                        TituloTipoUsuario = u.IdTipoUsuarioNavigation.TituloTipoUsuario
+                    }
+
+                }).ToList();
         }
 
         public Usuario Login(string email, string senha)
         {
-            return ctx.Usuarios.FirstOrDefault(u => u.Email == email || u.Senha == senha);
+            return ctx.Usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
         }
 
         public List<Usuario> UsuariosMedicosPacientes()

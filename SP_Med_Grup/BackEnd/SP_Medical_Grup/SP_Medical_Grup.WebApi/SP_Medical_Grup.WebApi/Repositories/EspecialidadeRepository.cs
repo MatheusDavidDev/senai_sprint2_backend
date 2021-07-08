@@ -55,7 +55,7 @@ namespace SP_Medical_Grup.WebApi.Repositories
 
         public List<Especialidade> ListarMedicos()
         {
-            return ctx.Especialidades.Include(e => e.Medicos).ToList();
+            return ctx.Especialidades.ToList();
         }
     }
 }

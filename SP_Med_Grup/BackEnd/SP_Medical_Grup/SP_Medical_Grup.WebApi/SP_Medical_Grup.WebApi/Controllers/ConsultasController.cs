@@ -24,7 +24,7 @@ namespace SP_Medical_Grup.WebApi.Controllers
             _consultaRepository = new ConsultaRepository();
         }
 
-        [Authorize(Roles = "1")]
+        
         [HttpGet]
         public IActionResult Get()
         {
@@ -54,7 +54,7 @@ namespace SP_Medical_Grup.WebApi.Controllers
             }
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles ="1")]
         [HttpPost]
         public IActionResult Post(Consulta novaConsulta)
         {
@@ -111,9 +111,9 @@ namespace SP_Medical_Grup.WebApi.Controllers
         public IActionResult ListarMinhasConsultas(int id)
         {
             try
-            {
+            {   
                 int idUsuario = Convert.ToInt32(HttpContext.User.Claims.First(m => m.Type == JwtRegisteredClaimNames.Jti).Value);
-                return Ok(_consultaRepository.ListarMinhasConsultas(id));
+                return Ok(_consultaRepository.ListarMinhasConsultas(idUsuario));
             }
             catch (Exception erro)
             {
